@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import Plausible from '../components/Plausible.astro'
 ---
 
 <html lang="en">
@@ -7,6 +8,7 @@ import '../styles/global.css'
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<title>Oliver Pooples</title>
+    {import.meta.env.PROD === true && <Plausible />}
 	</head>
 	<body>
 		<h1>Astro</h1>
