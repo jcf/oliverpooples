@@ -4,7 +4,12 @@ import "@tailwindplus/elements";
 
 import { Image } from "astro:assets";
 
+import Meta from "../components/Meta.astro";
 import Plausible from "../components/Plausible.astro";
+
+const meta = {
+  description: "Luxury lenses at a price you can barely afford",
+};
 
 import img1 from "../assets/images/IMG_4732.jpeg";
 import img2 from "../assets/images/IMG_4733.jpeg";
@@ -41,6 +46,7 @@ const products = [
     <meta name="viewport" content="width=device-width" />
     <title>Oliver Pooples - Premium Defects</title>
     <meta name="robots" content="noindex, nofollow" />
+    <Meta {...meta} />
     {import.meta.env.PROD === true && <Plausible />}
   </head>
   <body class="bg-gray-50 p-8">

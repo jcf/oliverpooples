@@ -1,0 +1,46 @@
+---
+export function unslashURL(url: string | URL): string {
+  if (url === "/") {
+    return url;
+  } else {
+    return url.toString().replace(/\/$/, "");
+  }
+}
+
+interface Props {
+  description: string;
+  image?: { src: string };
+  ogType?: string;
+  title: string;
+  url?: string;
+}
+
+import icon16 from "../assets/icons/favicon-16x16.png";
+import icon32 from "../assets/icons/favicon-32x32.png";
+import icon180 from "../assets/icons/apple-touch-icon.png";
+import icon512 from "../assets/icons/android-chrome-512x512.png";
+
+const { description, image, ogType = "article", title, url } = Astro.props;
+
+const canonicalURL = unslashURL(new URL(Astro.url.pathname, Astro.site));
+const imageURL = new URL((image || icon512).src, Astro.site);
+---
+
+<title>{title}</title>
+
+<link rel="canonical" href={url || canonicalURL} />
+
+<meta name="author" content="I. C. Poorly" />
+<meta name="description" content={description} />
+
+<meta property="og:type" content={ogType} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:site_name" content="Oliver Pooples" />
+<meta property="og:title" content={title} />
+<meta property="og:url" content={url || canonicalURL} />
+
+<link rel="apple-touch-icon" sizes="180x180" href={icon180.src} />
+<link rel="icon" type="image/png" sizes="32x32" href={icon32.src} />
+<link rel="icon" type="image/png" sizes="16x16" href={icon16.src} />
+<link rel="manifest" href="/manifest.json" />
